@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Trip} from '../../models/trip.model';
 import {TripService} from '../../services/trip/trip.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-edit-trip',
-  templateUrl: './edit-trip.component.html',
-  styleUrls: ['./edit-trip.component.css']
+  selector: 'app-create-trip',
+  templateUrl: './create-trip.component.html',
+  styleUrls: ['./create-trip.component.css']
 })
-export class EditTripComponent implements OnInit {
+export class CreateTripComponent implements OnInit {
+
   formGroup: FormGroup;
 
   trip: Trip;
@@ -22,6 +23,7 @@ export class EditTripComponent implements OnInit {
   constructor(private fb: FormBuilder, private tripService: TripService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.trip = new Trip('', '', '', '', '', '', null , null , ' ');
     this.formGroup = this.fb.group(
       {
         tripName: new FormControl(undefined, [Validators.required, Validators.minLength(2), Validators.maxLength(100)]),
@@ -30,28 +32,16 @@ export class EditTripComponent implements OnInit {
         tripEndDate: []
       }
     );
-
-    let id = this.route.snapshot.params.id;
-    console.log('id vaut : ' + id);
-    this.tripService.getTrip(id)
-      .then(
-        (trip: Trip) => {
-          this.trip = trip;
-        }
-      );
   }
 
-  onEdit() {
+  onCreate() {
 
     this.trip.name = this.formGroup.value.tripName;
     this.trip.description = this.formGroup.value.tripDescription;
     this.trip.dateBegin = this.formGroup.value.tripStartDate;
     this.trip.dateEnd = this.formGroup.value.tripEndDate;
 
-    console.log('this trip : ');
-    console.log(this.trip);
-
-    this.tripService.editTrip(this.trip);
+    this.tripService.createTrip(this.trip);
   }
 
   onClearPlaceHolder() {
@@ -60,5 +50,6 @@ export class EditTripComponent implements OnInit {
     this.clearStartDate = ' ';
     this.clearEndDate = ' ';
   }
+
 
 }

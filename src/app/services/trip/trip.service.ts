@@ -14,6 +14,16 @@ export class TripService {
   public static apiUrl = 'https://angular-eval.herokuapp.com/api/v1/';
 
   /**
+   * Method for create a new trip in the API
+   */
+  createTrip(trip: Trip) {
+    let headers = this.getDefaultHeader();
+    console.log('trip dans createTrip() vaut : ');
+    console.log(trip);
+    return this.http.get(TripService.apiUrl + 'offers/new/' + trip.toJSON(), {headers}).toPromise();
+  }
+
+  /**
    * Method for retrieve all the trips from the API
    */
   getTrips(): Promise<Array<Trip>> {
@@ -56,25 +66,18 @@ export class TripService {
    * Method for update a trip
    * @param trip
    */
-  editTrip(trip: Trip): Promise<any> {
+  editTrip(trip: Trip) {
     let headers = this.getDefaultHeader();
-    return this.http.put(TripService.apiUrl + 'edit/' + trip.id, trip.toJSON(), {headers})
-      .pipe(
-        map((res: any) => {
-          return Trip.fromJSON(res.offers);
-        })
-      )
-      .toPromise();
+    return this.http.post(TripService.apiUrl + '/offers/' + trip.id, trip.toJSON(), {headers}).toPromise();
   }
 
   /**
    * Method for delete a trip
    * @param id
    */
-  deleteTravel(id: string): Promise<any> {
-
-    return this.http.delete(TripService.apiUrl + 'offers/delete/' + id)
-      .toPromise();
+  deleteTravel(id: string) {
+    let headers = this.getDefaultHeader();
+    return this.http.get(TripService.apiUrl + '/offers/delete/' + id, {headers}).toPromise();
   }
 
   /**

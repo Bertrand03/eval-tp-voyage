@@ -5,6 +5,7 @@ import {GuardService} from './services/guard/guard.service';
 import {TripHomeComponent} from './views/trip-home/trip-home.component';
 import {DetailsTripComponent} from './views/details-trip/details-trip.component';
 import {EditTripComponent} from './views/edit-trip/edit-trip.component';
+import {CreateTripComponent} from './components/create-trip/create-trip.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'details-trip/:id', canActivate: [GuardService], component: DetailsTripComponent},
   {path: 'details-trip/edit/:id', canActivate: [GuardService], component: EditTripComponent},
   {path: 'details-trip/delete/:id', canActivate: [GuardService], component: EditTripComponent},
+  {path: 'create-trip', canActivate: [GuardService], component: CreateTripComponent},
   {path: 'posts', canActivate: [GuardService], component: TripHomeComponent},
   {path: 'login', component: LoginComponent},
   {path: '**', redirectTo: ''}, // Last choice if any paths above have been detected before
