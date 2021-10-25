@@ -13,6 +13,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {TripService} from './services/trip/trip.service';
 import {AuthService} from './services/auth/auth.service';
 import { AuthComponent } from './components/auth/auth.component';
+import { TripHomeComponent } from './views/trip-home/trip-home.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,15 @@ import { AuthComponent } from './components/auth/auth.component';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    AuthComponent
+    AuthComponent,
+    TripHomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule, // Need to get formBuilder
+    ReactiveFormsModule // Need to have Reactive Method and use FormGroup
   ],
   providers: [TripService, AuthService],
   bootstrap: [AppComponent]

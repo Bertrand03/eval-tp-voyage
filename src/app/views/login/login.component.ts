@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../../services/auth/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../../models/user.model';
 import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,31 +11,23 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   errorMsg: string;
-  authForm: FormGroup;
 
-  constructor(private authService: AuthService,
-              private router: Router,
-              private fb: FormBuilder) { }
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit(): void {
   }
 
   /**
-   * Method for initialize all the controls for the auth form
+   * Method for log a user
    */
-
-  initForm(): void {
-    this.authForm = this.fb.group({
-      email: ['', Validators.required, Validators.email],
-      password: ['', Validators.required],
+  onSignIn(user: User): void {
+    this.authService.login(user)
+      .then(() => {
+        this.router.navigate(['']);
+      }, (err) => {
+        this.errorMsg = err;
       });
-  }
-
-  /**
-   * Method called when the user submit the login form
-   */
-  onSignIn(): void {
-
   }
 
 }

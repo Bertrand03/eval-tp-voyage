@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Trip} from '../../models/trip.model';
+import {ActivatedRoute} from '@angular/router';
+import {TripService} from '../../services/trip/trip.service';
 
 @Component({
   selector: 'app-details-trip',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsTripComponent implements OnInit {
 
-  constructor() { }
+  trip: Trip;
 
+  constructor(private route: ActivatedRoute, private tripService: TripService) { }
+
+  /**
+   * Return the trip selected before in trip home thanks to the id shooted in the url
+   */
   ngOnInit(): void {
+
+    let id = this.route.snapshot.params.id;
+    console.log('id vaut : ' + id);
+
+    this.tripService.getTrip(id)
+      .then(
+        (trip: Trip) => {
+          this.trip = trip;
+        }
+      );
   }
 
 }

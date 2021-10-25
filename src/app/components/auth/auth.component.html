@@ -1,1 +1,36 @@
-<p>auth works!</p>
+<form (ngSubmit)="onSubmit()" [formGroup]="authForm">
+
+  <input type="email"
+         id="email"
+         class="form-control"
+         placeholder="Email"
+         formControlName="email"
+         [(ngModel)]="user.email">
+  <div
+    class="text-danger"
+    *ngIf="authForm.controls.email.touched && authForm.controls.email.invalid && authForm.controls.email.errors?.required">
+    You have to type a correct email to continue
+  </div>
+
+  <br>
+
+  <input type="password"
+         id="password"
+         class="form-control"
+         placeholder="Password"
+         formControlName="password"
+         [(ngModel)]="user.password">
+
+  <div
+    class="text-danger"
+    *ngIf="authForm.controls.password.touched && authForm.controls.password.invalid && authForm.controls.password.errors?.required">
+    Wrong password, retry please
+  </div>
+
+  <br>
+
+  <button class="btn btn-primary btn-block "
+          type="submit"> Connexion
+  </button>
+
+</form>

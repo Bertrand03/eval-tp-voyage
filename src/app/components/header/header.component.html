@@ -4,14 +4,13 @@
 
     <div class="d-flex align-items-center justify-content-around ">
 
-      <!--routerLink est un équivalent au href mais il recharge la page-->
       <a routerLink="/" class="text-white text-decoration-none">
         Trip travel
       </a>
 
       <div>
-        <button class="btn btn-success me-2">AJOUTER</button>
-        <button class="btn btn-outline-light me-2">DECONNEXION</button>
+        <button class="btn btn-success me-2" style="margin-right: 5px">Add a trip</button>
+        <button (click)="onLogout()" class="btn btn-outline-light me-2">Log out</button>
       </div>
 
     </div>
