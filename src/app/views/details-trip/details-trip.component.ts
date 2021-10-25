@@ -15,7 +15,7 @@ export class DetailsTripComponent implements OnInit {
   constructor(private route: ActivatedRoute, private tripService: TripService) { }
 
   /**
-   * Return the trip selected before in trip home thanks to the id shooted in the url
+   * Return the trip selected in "trip-home" thanks to the id passed in url
    */
   ngOnInit(): void {
 

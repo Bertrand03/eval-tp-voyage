@@ -7,7 +7,7 @@
           <h4 class="text-center">List of our trips, make your choice !</h4>
           <div *ngFor="let trip of trips; index as i">
 
-            <img [src]="trip.imgUrl" width="600" height="600" class="rounded mx-auto d-block" [routerLink]="'details-trip'">
+            <img [src]="trip.imgUrl" width="600" height="600" class="rounded mx-auto d-block" [routerLink]="['details-trip', this.trips[i].id]">
             <h5 style="margin-top: 10px" class="text-center"> {{trip.name}}</h5>
             <p class="justify-content-center">{{trip.description}}</p>
             <p>Trip dates : {{trip.dateBegin | date: 'dd/MM/yyyy'}} to {{trip.dateEnd | date: 'dd/MM/yyyy'}}</p>

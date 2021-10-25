@@ -72,9 +72,8 @@ export class TripService {
    * @param id
    */
   deleteTravel(id: string): Promise<any> {
-    let headers = this.getDefaultHeader();
 
-    return this.http.delete(TripService.apiUrl + 'offers/delete/' + id, {headers})
+    return this.http.delete(TripService.apiUrl + 'offers/delete/' + id)
       .toPromise();
   }
 

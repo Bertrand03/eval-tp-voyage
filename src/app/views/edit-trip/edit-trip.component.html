@@ -3,10 +3,12 @@
       <div class="form-group">
         <label for="tripName">Name</label>
         <input type="text" id="tripName" class="form-control" formControlName="tripName" placeholder="{{trip.name}}" [(ngModel)]="clearName">
+        <app-errors [control]="formGroup.controls.tripName" controlLabel="Nom du voyage"></app-errors>
       </div>
       <div class="form-group">
         <label for="tripDescription">Description</label>
-        <input type="text" id="tripDescription" class="form-control" formControlName="tripDescription" placeholder="{{trip.description}}" [(ngModel)]="clearDescr">
+        <textarea type="text" id="tripDescription" class="form-control" formControlName="tripDescription" placeholder="{{trip.description}}" [(ngModel)]="clearDescr"></textarea>
+        <app-errors [control]="formGroup.controls.tripDescription" controlLabel="Description du voyage"></app-errors>
       </div>
       <div class="form-group">
         <label for="tripStartDate">Start Date</label>

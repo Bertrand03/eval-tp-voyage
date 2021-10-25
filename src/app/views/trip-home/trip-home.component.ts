@@ -27,5 +27,6 @@ export class TripHomeComponent implements OnInit {
   onDelete(id: string) {
     this.tripService.deleteTravel(id);
   }
+
 }
 

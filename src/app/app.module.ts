@@ -15,6 +15,8 @@ import {AuthService} from './services/auth/auth.service';
 import { AuthComponent } from './components/auth/auth.component';
 import { TripHomeComponent } from './views/trip-home/trip-home.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ErrorsComponent } from './components/errors/errors.component';
+import { CreateTripComponent } from './components/create-trip/create-trip.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FooterComponent,
     LoginComponent,
     AuthComponent,
-    TripHomeComponent
+    TripHomeComponent,
+    ErrorsComponent,
+    CreateTripComponent
   ],
   imports: [
     BrowserModule,
